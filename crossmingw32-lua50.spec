@@ -66,7 +66,6 @@ prototipagem rápida.
 Summary:	%{realname} - DLL library for Windows
 Summary(pl):	%{realname} - biblioteka DLL dla Windows
 Group:		Applications/Emulators
-Obsoletes:	crossmingw32-lua40-dll
 
 %description dll
 %{realname} - DLL library for Windows.
