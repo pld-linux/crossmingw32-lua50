@@ -14,7 +14,6 @@ BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	crossmingw32-w32api
 BuildRequires:	libtool
-Obsoletes:	crossmingw32-lua40
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
