@@ -3,12 +3,13 @@ Summary:	A simple lightweight powerful embeddable programming language - Mingw32
 Summary(pl):	Prosty, lekki ale potê¿ny, osadzalny jêzyk programowania - wersja skro¶na dla Mingw32
 Name:		crossmingw32-%{realname}
 Version:	5.0.2
-Release:	3
+Release:	4
 License:	MIT
 Group:		Development/Languages
 Source0:	http://www.lua.org/ftp/lua-%{version}.tar.gz
 # Source0-md5:	dea74646b7e5c621fef7174df83c34b1
 URL:		http://www.lua.org/
+Requires:	crossmingw32-runtime
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc
