@@ -7,7 +7,7 @@ Release:	1
 License:	MIT
 Group:		Development/Languages
 Source0:	http://www.lua.org/ftp/lua-%{version}.tar.gz
-# Source0-md5:	af418947f880aaaebcbfbc2b1faaa8d2
+# Source0-md5:	dea74646b7e5c621fef7174df83c34b1
 URL:		http://www.lua.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
