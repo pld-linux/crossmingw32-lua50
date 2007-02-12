@@ -1,6 +1,6 @@
 %define		realname	lua50
 Summary:	A simple lightweight powerful embeddable programming language - Mingw32 cross version
-Summary(pl):	Prosty, lekki ale potê¿ny, osadzalny jêzyk programowania - wersja skro¶na dla Mingw32
+Summary(pl.UTF-8):   Prosty, lekki ale potÄ™Å¼ny, osadzalny jÄ™zyk programowania - wersja skroÅ›na dla Mingw32
 Name:		crossmingw32-%{realname}
 Version:	5.0.2
 Release:	5
@@ -42,36 +42,36 @@ dynamically typed, interpreted from bytecodes, and has automatic
 memory management with garbage collection, making it ideal for
 configuration, scripting, and rapid prototyping.
 
-%description -l pl
-Lua to jêzyk programowania o du¿ych mo¿liwo¶ciach ale lekki,
-przeznaczony do rozszerzania aplikacji. Jest te¿ czêsto u¿ywany jako
-samodzielny jêzyk ogólnego przeznaczenia. £±czy prost± proceduraln±
-sk³adniê (podobn± do Pascala) z potê¿nymi konstrukcjami opisu danych
-bazuj±cymi na tablicach asocjacyjnych i rozszerzalnej sk³adni. Lua ma
-dynamiczny system typów, interpretowany z bytecodu i automatyczne
-zarz±dzanie pamiêci± z od¶miecaczem, co czyni go idealnym do
-konfiguracji, skryptów i szybkich prototypów.
+%description -l pl.UTF-8
+Lua to jÄ™zyk programowania o duÅ¼ych moÅ¼liwoÅ›ciach ale lekki,
+przeznaczony do rozszerzania aplikacji. Jest teÅ¼ czÄ™sto uÅ¼ywany jako
+samodzielny jÄ™zyk ogÃ³lnego przeznaczenia. ÅÄ…czy prostÄ… proceduralnÄ…
+skÅ‚adniÄ™ (podobnÄ… do Pascala) z potÄ™Å¼nymi konstrukcjami opisu danych
+bazujÄ…cymi na tablicach asocjacyjnych i rozszerzalnej skÅ‚adni. Lua ma
+dynamiczny system typÃ³w, interpretowany z bytecodu i automatyczne
+zarzÄ…dzanie pamiÄ™ciÄ… z odÅ›miecaczem, co czyni go idealnym do
+konfiguracji, skryptÃ³w i szybkich prototypÃ³w.
 
-%description -l pt_BR
-Lua é uma linguagem de programação poderosa e leve, projetada para
-estender aplicações. Lua também é freqüentemente usada como uma
-linguagem de propósito geral. Lua combina programação procedural com
-poderosas construções para descrição de dados, baseadas em tabelas
-associativas e semântica extensível. Lua é tipada dinamicamente,
-interpretada a partir de bytecodes, e tem gerenciamento automático de
-memória com coleta de lixo. Essas características fazem de Lua uma
-linguagem ideal para configuração, automação (scripting) e
-prototipagem rápida.
+%description -l pt_BR.UTF-8
+Lua Ã© uma linguagem de programaÃ§Ã£o poderosa e leve, projetada para
+estender aplicaÃ§Ãµes. Lua tambÃ©m Ã© freqÃ¼entemente usada como uma
+linguagem de propÃ³sito geral. Lua combina programaÃ§Ã£o procedural com
+poderosas construÃ§Ãµes para descriÃ§Ã£o de dados, baseadas em tabelas
+associativas e semÃ¢ntica extensÃ­vel. Lua Ã© tipada dinamicamente,
+interpretada a partir de bytecodes, e tem gerenciamento automÃ¡tico de
+memÃ³ria com coleta de lixo. Essas caracterÃ­sticas fazem de Lua uma
+linguagem ideal para configuraÃ§Ã£o, automaÃ§Ã£o (scripting) e
+prototipagem rÃ¡pida.
 
 %package dll
 Summary:	%{realname} - DLL library for Windows
-Summary(pl):	%{realname} - biblioteka DLL dla Windows
+Summary(pl.UTF-8):   %{realname} - biblioteka DLL dla Windows
 Group:		Applications/Emulators
 
 %description dll
 %{realname} - DLL library for Windows.
 
-%description dll -l pl
+%description dll -l pl.UTF-8
 %{realname} - biblioteka DLL dla Windows.
 
 %prep
