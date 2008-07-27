@@ -3,7 +3,7 @@ Summary:	A simple lightweight powerful embeddable programming language - Mingw32
 Summary(pl.UTF-8):	Prosty, lekki ale potężny, osadzalny język programowania - wersja skrośna dla Mingw32
 Name:		crossmingw32-%{realname}
 Version:	5.0.2
-Release:	5
+Release:	6
 License:	MIT
 Group:		Development/Languages
 Source0:	http://www.lua.org/ftp/lua-%{version}.tar.gz
