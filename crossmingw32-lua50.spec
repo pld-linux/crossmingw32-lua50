@@ -3,7 +3,7 @@ Summary:	A simple lightweight powerful embeddable programming language - Mingw32
 Summary(pl.UTF-8):	Prosty, lekki ale potężny, osadzalny język programowania - wersja skrośna dla Mingw32
 Name:		crossmingw32-%{realname}
 Version:	5.0.2
-Release:	6
+Release:	7
 License:	MIT
 Group:		Development/Languages
 Source0:	http://www.lua.org/ftp/lua-%{version}.tar.gz
@@ -19,16 +19,27 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
 
-%define		target		i386-mingw32
-%define		target_platform	i386-pc-mingw32
-%define		arch		%{_prefix}/%{target}
+%define		target			i386-mingw32
+%define		target_platform		i386-pc-mingw32
 
-%define		__cc		%{target}-gcc
-%define		__cxx		%{target}-g++
+%define		_sysprefix		/usr
+%define		_prefix			%{_sysprefix}/%{target}
+%define		_libdir			%{_prefix}/lib
+%define		_pkgconfigdir		%{_prefix}/lib/pkgconfig
+%define		_dlldir			/usr/share/wine/windows/system
+%define		__cc			%{target}-gcc
+%define		__cxx			%{target}-g++
+%define		__pkgconfig_provides	%{nil}
+%define		__pkgconfig_requires	%{nil}
 
-%ifarch alpha sparc sparc64 sparcv9
+%define		_ssp_cflags		%{nil}
+%ifnarch %{ix86}
+# arch-specific flags (like alpha's -mieee) are not valid for i386 gcc
 %define		optflags	-O2
 %endif
+# -z options are invalid for mingw linker, most of -f options are Linux-specific
+%define		filterout_ld	-Wl,-z,.*
+%define		filterout_c	-f[-a-z0-9=]*
 
 %description
 Lua is a powerful, light-weight programming language designed for
@@ -82,7 +93,7 @@ LD=%{target}-ld ; export LD
 AR=%{target}-ar ; export AR
 AS=%{target}-as ; export AS
 CROSS_COMPILE=1 ; export CROSS_COMPILE
-CPPFLAGS="-I%{arch}/include" ; export CPPFLAGS
+CPPFLAGS="-I%{includedir}" ; export CPPFLAGS
 RANLIB=%{target}-ranlib ; export RANLIB
 LDSHARED="%{target}-gcc -shared" ; export LDSHARED
 TARGET="%{target}" ; export TARGET
@@ -109,21 +120,20 @@ mv liblualib{,50}.a
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{arch}/{include/lua50,lib}
-install -d $RPM_BUILD_ROOT%{_datadir}/wine/windows/system
+install -d $RPM_BUILD_ROOT{%{_includedir}/lua50,%{_libdir},%{_dlldir}}
 
-install include/*.h $RPM_BUILD_ROOT%{arch}/include/lua50
-install lib/*.a $RPM_BUILD_ROOT%{arch}/lib
-install lib/*.dll $RPM_BUILD_ROOT%{_datadir}/wine/windows/system
+install include/*.h $RPM_BUILD_ROOT%{_includedir}/lua50
+install lib/*.a $RPM_BUILD_ROOT%{_libdir}
+install lib/*.dll $RPM_BUILD_ROOT%{_dlldir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{arch}/include/*
-%{arch}/lib/*
+%{_libdir}/lib*.a
+%{_includedir}/lua50
 
 %files dll
 %defattr(644,root,root,755)
-%{_datadir}/wine/windows/system/*
+%{_dlldir}/*.dll
