@@ -2,19 +2,16 @@
 Summary:	A simple lightweight powerful embeddable programming language - Mingw32 cross version
 Summary(pl.UTF-8):	Prosty, lekki ale potężny, osadzalny język programowania - wersja skrośna dla Mingw32
 Name:		crossmingw32-%{realname}
-Version:	5.0.2
-Release:	7
+Version:	5.0.3
+Release:	1
 License:	MIT
 Group:		Development/Languages
 Source0:	http://www.lua.org/ftp/lua-%{version}.tar.gz
-# Source0-md5:	dea74646b7e5c621fef7174df83c34b1
+# Source0-md5:	feee27132056de2949ce499b0ef4c480
 URL:		http://www.lua.org/
-Requires:	crossmingw32-runtime
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	crossmingw32-gcc
 BuildRequires:	crossmingw32-w32api
-BuildRequires:	libtool
+Requires:	crossmingw32-runtime
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
@@ -72,16 +69,28 @@ memória com coleta de lixo. Essas características fazem de Lua uma
 linguagem ideal para configuração, automação (scripting) e
 prototipagem rápida.
 
+%package static
+Summary:	Static Lua 5.0.x libraries - MinGW32 cross version
+Summary(pl.UTF-8):	Statyczne biblioteki Lua 5.0.x - wersja skrośna MinGW32
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description static
+Static Lua 5.0.x libraries (cross MinGW32 version).
+
+%description static -l pl.UTF-8
+Statyczne biblioteki Lua 5.0.x (wersja skrośna MinGW32).
+
 %package dll
-Summary:	%{realname} - DLL library for Windows
-Summary(pl.UTF-8):	%{realname} - biblioteka DLL dla Windows
+Summary:	Lua 5.0.x - DLL libraries for Windows
+Summary(pl.UTF-8):	Lua 5.0.x - biblioteki DLL dla Windows
 Group:		Applications/Emulators
 
 %description dll
-%{realname} - DLL library for Windows.
+Lua 5.0.x - DLL libraries for Windows.
 
 %description dll -l pl.UTF-8
-%{realname} - biblioteka DLL dla Windows.
+Lua 5.0.x - biblioteki DLL dla Windows.
 
 %prep
 %setup -q -n lua-%{version}
@@ -93,7 +102,7 @@ LD=%{target}-ld ; export LD
 AR=%{target}-ar ; export AR
 AS=%{target}-as ; export AS
 CROSS_COMPILE=1 ; export CROSS_COMPILE
-CPPFLAGS="-I%{includedir}" ; export CPPFLAGS
+CPPFLAGS="-I%{_includedir}" ; export CPPFLAGS
 RANLIB=%{target}-ranlib ; export RANLIB
 LDSHARED="%{target}-gcc -shared" ; export LDSHARED
 TARGET="%{target}" ; export TARGET
@@ -111,8 +120,8 @@ cd lib
 cd ../..
 
 cd lib
-mv liblua{,50}.a
-mv liblualib{,50}.a
+%{__mv} liblua{,50}.a
+%{__mv} liblualib{,50}.a
 %if 0%{!?debug:1}
 %{target}-strip *.dll
 %{target}-strip -g -R.comment -R.note *.a
@@ -131,9 +140,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%doc COPYRIGHT HISTORY README doc/*.html
+%{_libdir}/liblua50.dll.a
+%{_libdir}/liblualib50.dll.a
 %{_includedir}/lua50
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/liblua50.a
+%{_libdir}/liblualib50.a
 
 %files dll
 %defattr(644,root,root,755)
-%{_dlldir}/*.dll
+%{_dlldir}/lua50.dll
+%{_dlldir}/lualib50.dll
